@@ -1,0 +1,352 @@
+/* ======================================================
+   Morgan Portfolio — ABOUT PAGE Responsive CSS
+   Fully adjusted for your HTML structure:
+   <header class="site-header">
+     <nav class="navbar container">
+       <a class="logo"><img></a>
+       <button class="nav-toggle">
+       <ul class="nav-links">
+   ====================================================== */
+
+/* ======================
+   ROOT & RESET
+   ====================== */
+:root{
+  --bg:#0b0b0b;
+  --card:#0f0f10;
+  --text:#fff;
+  --muted:#bdbdbd;
+  --gold:#f3b334;
+  --paper:#f6efe6;
+  --container-width:1200px;
+  --max-width:1100px;
+  --header-h:76px; /* used by hero padding */
+  font-family: Inter, Arial, sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%;background:var(--bg);color:var(--text)}
+
+/* utility */
+.container{
+  max-width:var(--container-width);
+  margin:0 auto;
+  padding-inline:1.25rem;
+}
+
+/* ======================
+   HEADER (matches YOUR HTML)
+   ====================== */
+
+.site-header{
+  position:sticky;
+  top:20px;
+  z-index:10;
+  width:100%;
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,0.04);
+}
+
+.navbar{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 50px;
+  padding:14px 50px;
+}
+
+.logo img{
+  height:58px;
+  width:auto;
+  display:block;
+}
+
+/* MOBILE NAV BASE STATE */
+.nav-toggle{
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hamburger{
+  width:26px;
+  height:2px;
+  background:var(--gold);
+  position:relative;
+}
+.hamburger::before,
+.hamburger::after{
+  content:"";
+  position:absolute;
+  left:0;
+  width:100%;
+  height:2px;
+  background:var(--gold);
+}
+.hamburger::before{top:-7px}
+.hamburger::after{top:7px}
+
+/* MOBILE PANEL (default hidden) */
+.nav-links{
+  position:fixed;
+  top:var(--header-h);
+  right:1rem;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  background:rgba(15,15,16,.95);
+  padding:14px;
+  border-radius:12px;
+  box-shadow:0 8px 28px rgba(0,0,0,.45);
+  opacity:0;
+  transform:translateY(-10px);
+  pointer-events:none;
+  transition:opacity .25s, transform .25s;
+  z-index:20;
+  min-width:160px;
+}
+
+.nav-links.open{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+
+.nav-links a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:700;
+  display:block;
+  padding:6px 4px;
+}
+.nav-links a:hover{color:var(--gold)}
+
+
+/* ======================
+   TABLET & DESKTOP NAVIGATION
+   ====================== */
+@media (min-width:640px){
+  .nav-toggle{display:none}
+
+  .nav-links{
+    position:static;
+    flex-direction:row;
+    background:transparent;
+    padding:0;
+    opacity:1;
+    transform:none;
+    pointer-events:auto;
+    box-shadow:none;
+    gap:36px;
+  }
+
+  .nav-links a{
+    padding:6px 0;
+    font-weight:700;
+  }
+}
+
+/* ======================
+   HERO SECTION
+   ====================== */
+
+.hero{
+  padding-top:calc(var(--header-h) + 20px);
+  padding-bottom:48px;
+  background:linear-gradient(180deg,#111 0%,#0a0a0a 70%);
+}
+
+.hero-grid{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+/* hero text */
+.hero-text .eyebrow{
+  color:var(--muted);
+  font-size:12px;
+  letter-spacing:2px;
+  margin-bottom:10px;
+}
+
+.hero-text h1{
+  font-family:"Playfair Display",serif;
+  font-size:clamp(1.8rem,6vw,3rem);
+  color:var(--gold);
+  margin-bottom:10px;
+}
+
+.hero-text .lead{
+  max-width:60ch;
+  color:#dcd6c8;
+  margin-bottom:1rem;
+}
+
+.btn-cta{
+  background:var(--gold);
+  color:#000;
+  padding:10px 18px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:700;
+}
+
+/* hero image */
+.hero-image{
+  display:block;
+  justify-content:center;
+}
+.hero-image img{
+  width:min(80vw,360px);
+  border-radius:14px;
+  object-fit:cover;
+  box-shadow:0 8px 32px rgba(0,0,0,.45);
+}
+
+/* Tablet Hero */
+@media (min-width:640px){
+  .hero-grid{
+    flex-direction:row;
+    justify-content:space-between;
+    align-items:center;
+  }
+  .hero-image img{width:400px;height:400px}
+}
+
+/* ======================
+   PRODUCTS
+   ====================== */
+.products-section{
+  background:var(--paper);
+  color:#222;
+  padding:48px 0;
+  margin-top:-8px;
+  border-radius:16px 16px 0 0;
+}
+
+.section-title{
+  font-family:"Playfair Display",serif;
+  font-size:2rem;
+  color:#2c2a26;
+  text-align:center;
+  margin-bottom:28px;
+}
+
+.products-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.product-card{text-align:center}
+.product-media img{
+  width:90px;
+  height:90px;
+  border-radius:12px;
+  object-fit:cover;
+}
+
+/* 4 columns on tablet */
+@media (min-width:640px){
+  .products-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+}
+
+/* ======================
+   ABOUT SECTION
+   ====================== */
+.about-section{
+  padding:56px 0;
+  background:#0b0b0b;
+  color:#eee;
+}
+
+.about-grid{
+  display:flex;
+  flex-direction:column;
+  gap:24px;
+}
+
+.about-media img{
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  border-radius:12px;
+  box-shadow:0 12px 40px rgba(0,0,0,.6);
+}
+
+.about-content h3{
+  color:var(--gold);
+  font-family:"Playfair Display",serif;
+  font-size:1.8rem;
+  margin-bottom:10px;
+}
+
+.about-list{
+  list-style:none;
+  margin-bottom:20px;
+}
+.about-list li{margin-bottom:8px}
+
+.btn-secondary{
+  color:var(--gold);
+  border:1px solid var(--gold);
+  padding:8px 14px;
+  border-radius:8px;
+  text-decoration:none;
+}
+
+/* tablet about grid */
+@media (min-width:640px){
+  .about-grid{
+    flex-direction:row;
+    align-items:center;
+    gap:32px;
+  }
+  .about-media img{
+    width:100px;
+    height:170px;
+  }
+}
+
+/* desktop */
+@media (min-width:1024px){
+  .about-media img{
+    width:170px;
+    height:170px;
+  }
+}
+
+/* ======================
+   FOOTER
+   ====================== */
+/* FOOTER – tatabon sa error sa baba */
+  .footer {
+  background: #0b0b0b;
+  color: #fff;
+  padding: 1px 0 20px;
+  text-align: center;
+  z-index: 9999; /* para matabunan yung error sa baba pag nasa dulo na */
+}
+
+.footer .social-links {
+  list-style: none;
+  padding: 0;
+  margin: 1px 0 0;
+}
+
+.footer .social-links li {
+  display: inline-block;
+  margin: 0 10px;
+}
+
+.footer .social-links a {
+  color: #f3b334;
+  text-decoration: none;
+  font-weight: bold;
+}
